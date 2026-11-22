@@ -1,0 +1,15 @@
+# documente, backup-uri si chei - NU se comit niciodata
+docs/
+*.pdf
+*.jpg
+*.jpeg
+*.png
+*.heic
+*.enc
+*.pkpass
+*.pem
+*.key
+*.p12
+*.pfx
+.env
+secrets/
