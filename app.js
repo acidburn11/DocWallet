@@ -151,7 +151,7 @@ async function start() {
   const setup = !(await getMeta('vault'));
   $('pass2').classList.toggle('hidden', !setup);
   $('authHint').textContent = setup
-    ? 'Creeaza o parola (minim 12 caractere). Nu are recuperare: noteaz-o pe hartie.'
+    ? 'Creeaza o parola (6 cifre). Nu are recuperare: noteaz-o pe hartie.'
     : 'Introdu parola ca sa deschizi seiful.';
   $('authBtn').textContent = setup ? 'Creeaza seif' : 'Deschide';
   $('authErr').textContent = '';
@@ -181,7 +181,7 @@ $('authBtn').onclick = async () => {
   const p = $('pass').value;
   try {
     if (!$('pass2').classList.contains('hidden')) {
-      if (p.length < 12) throw new Error('Minim 12 caractere');
+      if (!/^\d{6}$/.test(p)) throw new Error('Parola trebuie sa aiba 6 cifre');
       if (p !== $('pass2').value) throw new Error('Parolele nu coincid');
     }
     await unlock(p);
