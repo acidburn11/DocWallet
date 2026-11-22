@@ -1,0 +1,7 @@
+#!/bin/sh
+bad=$(git diff --cached --name-only | grep -Ei '\.(pdf|jpe?g|png|heic|enc|pkpass|p12|pfx|pem|key)$|^docs/')
+if [ -n "$bad" ]; then echo "BLOCAT: fisiere interzise:"; echo "$bad"; exit 1; fi
+if git diff --cached -U0 | grep -Eq 'BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY|ghp_[A-Za-z0-9]{20,}|AKIA[0-9A-Z]{16}'; then
+  echo "BLOCAT: posibil secret in diff"; exit 1
+fi
+exit 0
